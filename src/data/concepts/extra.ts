@@ -1,0 +1,273 @@
+import type { Concept } from "@/types/concept";
+
+export const extraConcepts: Concept[] = [
+  {
+    id: "waves.double-slit",
+    title: "Double-Slit Interference",
+    domain: "waves",
+    gradeBand: "9-12",
+    level: 3,
+    difficulty: 4,
+    prerequisites: ["waves.doppler-effect"],
+    tags: ["interference", "double slit", "wave", "young"],
+    oneLiner: "Waves through two slits produce a fringe pattern of bright and dark stripes — proof of wave nature.",
+    explain: {
+      kid: "Shine light through two tiny gaps. On the wall behind, you see stripes — bright, dark, bright, dark. The two streams of light add up or cancel out.",
+      teen: "From each slit, waves spread out. Where peaks meet peaks → bright. Peaks meet troughs → dark. Spacing depends on slit gap and wavelength.",
+      adult: "Maxima at d·sinθ = mλ. Pattern intensity ∝ cos²(πd·sinθ/λ)·sinc²(πa·sinθ/λ) (slit width a). Foundational evidence for wave-particle duality.",
+      phd: "Photon-by-photon experiment shows pattern builds up statistically — single quanta interfere with themselves. Path-integral picture: amplitude is sum over all routes.",
+    },
+    realWorld: [
+      { context: "Young's 1801 experiment", insight: "Established light's wave nature; later extended to electrons (Davisson-Germer)." },
+      { context: "Quantum eraser", insight: "Erasing path information restores fringes — interference depends on which-path knowledge." },
+      { context: "Interferometric gravitational wave detection (LIGO)", insight: "Beams from two arms recombine; tiny path-length changes shift fringes." },
+    ],
+    memoryTip: "d·sinθ = mλ for bright fringes. Smaller slit gap → fringes farther apart. Wider gap → tighter pattern.",
+    experiment: {
+      title: "Watch ripples meet",
+      hypothesis: "Two coherent sources create constructive and destructive interference.",
+      steps: [
+        { action: "Observe wave fronts through slits.", expect: "Wavefronts emanate as semicircles from each slit." },
+        { action: "Adjust slit separation.", expect: "Fringe pattern on screen widens/narrows." },
+      ],
+      whatToNotice: ["Fringes spaced by λL/d on screen at distance L.", "Single quantum interferes with itself (quantum view)."],
+      commonMistake: "Believing the fringes are caused by photons hitting each other. They arise from amplitude interference per photon.",
+    },
+    equations: [
+      { label: "Maxima condition", expression: "d·sinθ = m·λ", meaning: "Constructive interference for integer m.", memoryTip: "m=0 central, m=1 first off-center.", visualHint: "Wavefronts overlap at fringe maxima." },
+    ],
+    visual: {
+      modelId: "double-slit",
+      description: "Source emits wavefronts that pass through two slits; fringe pattern visible on screen.",
+      controls: [{ label: "Slit separation", param: "slitSeparation", min: 0.4, max: 2, step: 0.1, default: 1, unit: "m" }],
+    },
+    quiz: [
+      { question: "Halving slit separation does what to fringe spacing?", options: ["Halves", "Same", "Doubles", "Quarters"], answerIndex: 2, explanation: "Spacing ∝ λL/d, so d↓ ⇒ spacing↑." },
+    ],
+  },
+  {
+    id: "quantum.wave-particle-duality",
+    title: "Wave-Particle Duality",
+    domain: "quantum",
+    gradeBand: "9-12",
+    level: 3,
+    difficulty: 4,
+    prerequisites: ["waves.double-slit"],
+    tags: ["duality", "photon", "electron", "quantum"],
+    oneLiner: "Quantum objects act like waves when not observed and like particles when measured — context decides the appearance.",
+    explain: {
+      kid: "Tiny things like electrons act like little balls when you look closely, but like ripples when you don't. Weird but real.",
+      teen: "Photons make interference patterns (waves), but each one hits the screen at a single spot (particle). The wave is a probability map.",
+      adult: "de Broglie: λ = h/p. Born rule: |ψ|² gives probability. Measurement collapses superposition into eigenstate of observable.",
+      phd: "No collapse in unitary QM; interpretations differ (Copenhagen, many-worlds, decoherence). Quantum field theory treats both as excitations of the same underlying field.",
+    },
+    realWorld: [
+      { context: "Electron microscope", insight: "Uses electron wavelength shorter than visible light to image atoms." },
+      { context: "Photoelectric effect (Einstein 1905)", insight: "Photon as quantized packet — Nobel Prize for revealing particle aspect of light." },
+      { context: "Bell tests", insight: "Confirm quantum predictions; rule out local hidden-variable theories." },
+    ],
+    memoryTip: "Wave when free, particle when measured. λ = h/p. Tiny mass → big λ. Electrons of 100 eV ≈ atomic spacing.",
+    experiment: {
+      title: "Two slits with quantum twist",
+      hypothesis: "Pattern appears wave-like even when sending one quantum at a time.",
+      steps: [
+        { action: "Watch wavefronts through both slits.", expect: "Fringe pattern emerges from interference." },
+        { action: "Imagine 'closing one slit' (cover with hand mentally).", expect: "Fringes vanish; just a blob." },
+      ],
+      whatToNotice: ["Same diagram explains light and matter waves.", "Pattern is statistical, built from many single-particle events."],
+      commonMistake: "Saying a photon 'is sometimes a wave, sometimes a particle.' Better: it has both aspects, and the experiment selects which to reveal.",
+    },
+    equations: [
+      { label: "de Broglie wavelength", expression: "λ = h/p", meaning: "Matter wavelength = Planck's constant / momentum.", memoryTip: "Big momentum, tiny wavelength.", visualHint: "Faster particle → tighter ripples." },
+    ],
+    visual: {
+      modelId: "double-slit",
+      description: "Wavefronts from two slits superpose into an interference pattern — applies to photons and matter.",
+      controls: [{ label: "Slit separation", param: "slitSeparation", min: 0.4, max: 2, step: 0.1, default: 1 }],
+    },
+    quiz: [
+      { question: "An electron with higher momentum has...", options: ["Larger λ", "Smaller λ", "Same λ", "No λ"], answerIndex: 1, explanation: "λ = h/p; bigger p → smaller λ." },
+    ],
+  },
+  {
+    id: "quantum.bose-einstein-condensate",
+    title: "Bose-Einstein Condensate",
+    domain: "quantum",
+    gradeBand: "grad",
+    level: 6,
+    difficulty: 5,
+    prerequisites: ["quantum.atomic-orbitals"],
+    tags: ["BEC", "ultra-cold", "boson", "superfluid"],
+    oneLiner: "Cool bosons below a critical temperature and a macroscopic fraction collapses into the same quantum ground state — a single giant matter wave.",
+    explain: {
+      kid: "Make a gas of atoms super super cold — colder than space. They start acting like one big atom moving in step.",
+      teen: "Bosons can share the same quantum state. Below T_c (~nK), millions of atoms condense into the lowest energy state — a quantum object you can see.",
+      adult: "T_c ∝ n^(2/3)/m. Condensate described by Gross-Pitaevskii equation (mean-field). Vortices, interference of two BECs (Andrews 1997) confirm coherence.",
+      phd: "BEC ↔ superfluidity (Bogoliubov). Off-diagonal long-range order in one-body density matrix. Optical lattices realize Hubbard models — bridge to many-body physics and quantum simulation.",
+    },
+    realWorld: [
+      { context: "Cornell-Wieman 1995", insight: "Rb-87 atoms cooled to 170 nK — first experimental BEC; 2001 Nobel Prize." },
+      { context: "Atom interferometers", insight: "Use coherent BECs as ultra-precise inertial sensors." },
+      { context: "Quantum simulation", insight: "Optical-lattice BECs simulate condensed-matter Hamiltonians." },
+    ],
+    memoryTip: "T_c sets the threshold. Below T_c: macroscopic occupation of the ground state. Bosons love sharing rooms; fermions don't.",
+    experiment: {
+      title: "Cool atoms past T_c",
+      hypothesis: "At very low T, atoms condense into a coherent cloud.",
+      steps: [
+        { action: "Lower temperature slider toward zero.", expect: "Particles stop jittering; color shifts to violet — coherent BEC." },
+        { action: "Raise temperature.", expect: "Atoms scatter, lose coherence." },
+      ],
+      whatToNotice: ["Spread shrinks dramatically near T_c.", "BEC behaves like single-particle ground state, not classical gas."],
+      commonMistake: "Thinking BEC means atoms are 'merged into one'. They retain identity but share the same quantum state.",
+    },
+    equations: [
+      { label: "Critical temperature", expression: "T_c = (2π·ℏ²/m·k)·(n/ζ(3/2))^(2/3)", meaning: "BEC onset depends on density and mass.", memoryTip: "Higher density → higher T_c.", visualHint: "Increase density (not modeled) raises threshold." },
+    ],
+    visual: {
+      modelId: "bose-einstein-condensate",
+      description: "Cold atom cloud. Lower temperature to see condensation into a coherent state.",
+      controls: [{ label: "Temperature", param: "temperature", min: 0.5, max: 200, step: 1, default: 100, unit: "nK" }],
+    },
+    quiz: [
+      { question: "Bosonic statistics permit:", options: ["Single occupancy", "Multiple atoms in ground state", "Pauli exclusion", "Quark confinement"], answerIndex: 1, explanation: "Bosons can share quantum states; fermions cannot." },
+    ],
+  },
+  {
+    id: "em.transformer",
+    title: "Transformer: Voltage Up or Down",
+    domain: "em",
+    gradeBand: "9-12",
+    level: 3,
+    difficulty: 3,
+    prerequisites: ["em.faraday-induction"],
+    tags: ["transformer", "induction", "AC"],
+    oneLiner: "Two coils on a shared iron core — turning AC in primary into different AC voltage in secondary based on turns ratio.",
+    explain: {
+      kid: "Two springs of wire share a core. Wiggle electrons in one and the other wiggles too — but bigger or smaller depending on coil size.",
+      teen: "Primary creates oscillating flux in iron core; secondary picks up induced EMF. V_s/V_p = N_s/N_p (turns ratio).",
+      adult: "Ideal: V_s/V_p = N_s/N_p, I_s/I_p = N_p/N_s, P_in = P_out. Real losses: resistive (I²R), hysteresis, eddy currents — minimized via laminated core.",
+      phd: "Equivalent circuit with leakage inductance, core saturation, frequency-dependent losses. High-power systems use polyphase + tap-changing for grid voltage regulation.",
+    },
+    realWorld: [
+      { context: "Power grid", insight: "Step up to 400 kV for transmission (low I → low I²R loss); step down to 230 V at home." },
+      { context: "Phone chargers", insight: "Small transformers + rectifiers convert AC mains to DC at 5-20 V." },
+      { context: "Welding machines", insight: "Step down to low V, high I — needed for arc heating." },
+    ],
+    memoryTip: "Turns ratio = voltage ratio. More turns on secondary = step up. Power conserved → current ratio inverts.",
+    experiment: {
+      title: "Coil turns ratio",
+      hypothesis: "Increasing N_s vs N_p raises secondary voltage.",
+      steps: [
+        { action: "Set primary turns 8, secondary 16.", expect: "Step-up by factor 2." },
+        { action: "Increase primary voltage.", expect: "Core glow intensifies; secondary voltage scales linearly." },
+      ],
+      whatToNotice: ["Iron core flux links both coils.", "DC will not work — needs changing flux."],
+      commonMistake: "Thinking transformers create energy. They don't — they trade voltage for current.",
+    },
+    equations: [
+      { label: "Turns ratio", expression: "V_s/V_p = N_s/N_p", meaning: "Voltage scales with turns ratio.", memoryTip: "More secondary turns = bigger output voltage.", visualHint: "Visible coils sized by turn count." },
+      { label: "Power conservation", expression: "V_p·I_p = V_s·I_s", meaning: "Lossless transformer preserves power.", memoryTip: "If V doubles, I halves.", visualHint: "Brighter glow on secondary balanced by current draw." },
+    ],
+    visual: {
+      modelId: "transformer",
+      description: "Two coils on a laminated iron core. Adjust voltages and turn counts.",
+      controls: [
+        { label: "Primary voltage", param: "primaryVoltage", min: 1, max: 12, step: 0.5, default: 5, unit: "V" },
+        { label: "Primary turns", param: "primaryTurns", min: 4, max: 32, step: 1, default: 8 },
+        { label: "Secondary turns", param: "secondaryTurns", min: 4, max: 32, step: 1, default: 16 },
+      ],
+    },
+    quiz: [
+      { question: "200 turns primary, 50 turns secondary. V_p = 240 V. V_s?", options: ["60 V", "120 V", "240 V", "960 V"], answerIndex: 0, explanation: "V_s = V_p·(N_s/N_p) = 240·(50/200) = 60 V." },
+    ],
+  },
+  {
+    id: "astro.neutron-stars-pulsars",
+    title: "Neutron Stars and Pulsars",
+    domain: "astro",
+    gradeBand: "undergrad",
+    level: 5,
+    difficulty: 4,
+    prerequisites: ["astro.keplers-laws"],
+    tags: ["neutron star", "pulsar", "compact", "rotation"],
+    oneLiner: "Neutron stars are city-sized stellar remnants spinning fast and emitting twin radio beams that flash like cosmic lighthouses.",
+    explain: {
+      kid: "When some big stars die, their core gets squished into a ball as small as a city. It spins really fast and shines beams that wink at us.",
+      teen: "After supernova, core collapses into nuclear-density object (~20 km) made of neutrons. Conservation of angular momentum spins it up — sometimes 1000 times per second.",
+      adult: "Mass ~1.4-2.2 M☉, radius ~10-12 km. Surface gravity ~10¹¹ g. TOV equation governs structure. Pulsar emission via magnetic dipole + open field lines.",
+      phd: "Equation of state at supranuclear density unknown; neutron-star mergers (GW170817) test EOS via tidal deformability. Pulsar timing arrays detect nanohertz GWs from supermassive BH binaries.",
+    },
+    realWorld: [
+      { context: "Crab Pulsar", insight: "Spins 30 Hz; remnant of 1054 AD supernova observed by Chinese astronomers." },
+      { context: "PSR J0740+6620", insight: "2.08 M☉ neutron star — pushes EOS limits." },
+      { context: "GW170817", insight: "Binary neutron-star merger detected in GW + electromagnetic — kilonova confirmed r-process nucleosynthesis." },
+    ],
+    memoryTip: "Spin: like a figure skater pulling arms in. Beams along magnetic axis (often misaligned with rotation axis). Each rotation flashes Earth.",
+    experiment: {
+      title: "Spinning lighthouse",
+      hypothesis: "Faster spin = more frequent pulse.",
+      steps: [
+        { action: "Increase spin rate.", expect: "Twin yellow beams sweep faster." },
+        { action: "Slow it down.", expect: "Pulse rate drops; star still glowing." },
+      ],
+      whatToNotice: ["Beams emerge from magnetic poles.", "Tilt of beam axis vs rotation axis controls observed pulse profile."],
+      commonMistake: "Thinking the star's surface emits all over. Pulsar emission is collimated along magnetic poles.",
+    },
+    equations: [
+      { label: "Spin-up via collapse", expression: "I·ω = const", meaning: "Conservation of angular momentum during collapse.", memoryTip: "Smaller radius → much faster spin (factor ~10⁹).", visualHint: "Visualize a star collapsing while rotation rate skyrockets." },
+    ],
+    visual: {
+      modelId: "neutron-star",
+      description: "Compact star spinning rapidly, emitting beams from magnetic poles.",
+      controls: [{ label: "Spin rate", param: "spinRate", min: 1, max: 30, step: 0.5, default: 6, unit: "rad/s" }],
+    },
+    quiz: [
+      { question: "A pulsar's beam is tied to its...", options: ["Equator", "Magnetic axis", "Surface", "Companion"], answerIndex: 1, explanation: "Emission concentrates near open magnetic field lines at the magnetic poles." },
+    ],
+  },
+  {
+    id: "propulsion.ion-thruster",
+    title: "Ion Thruster Propulsion",
+    domain: "propulsion",
+    gradeBand: "undergrad",
+    level: 4,
+    difficulty: 4,
+    prerequisites: ["propulsion.rocket-thrust"],
+    tags: ["ion engine", "electric propulsion", "specific impulse"],
+    oneLiner: "Electric fields accelerate xenon ions to ~30 km/s — tiny thrust but ultra-high specific impulse for long missions.",
+    explain: {
+      kid: "Instead of fire, this engine throws charged atoms super fast. Push is gentle but lasts forever.",
+      teen: "Ionize gas, accelerate ions through grid voltage, neutralize on exit. Slow propellant consumption + huge exhaust velocity = efficient.",
+      adult: "Thrust F = ṁ·v_e, with v_e ≈ √(2qV/m) for ions of charge q through potential V. I_sp ~ 3000 s vs chemical ~450 s.",
+      phd: "Hall-effect vs gridded ion engines. Beam neutralization to avoid spacecraft charging. Erosion (sputter) of grids limits lifetime; advanced designs use carbon-carbon grids.",
+    },
+    realWorld: [
+      { context: "Dawn (NASA)", insight: "Used 3 ion engines to visit Vesta and Ceres — accumulated Δv >11 km/s over 11 years." },
+      { context: "Starlink station-keeping", insight: "Krypton Hall thrusters maintain orbit against drag." },
+      { context: "BepiColombo", insight: "ESA mission to Mercury uses long-burn ion engines for 7-year cruise." },
+    ],
+    memoryTip: "Tiny thrust × long time = huge total Δv. v_e ∝ √(V/m). Heavy ion (Xe) eases voltage requirement.",
+    experiment: {
+      title: "Ion grid acceleration",
+      hypothesis: "Higher grid voltage = faster ions.",
+      steps: [
+        { action: "Increase grid voltage.", expect: "Purple ions accelerate harder; exhaust beam tightens." },
+        { action: "Lower voltage.", expect: "Slow drift, weak thrust." },
+      ],
+      whatToNotice: ["Acceleration only after passing through the grid.", "Constant trickle from chamber upstream."],
+      commonMistake: "Comparing thrust-to-weight to chemical engines. Ion engines are slow burners — never lift off Earth.",
+    },
+    equations: [
+      { label: "Exhaust velocity", expression: "v_e = √(2qV/m)", meaning: "Ion speed after acceleration through V.", memoryTip: "Bigger V or smaller m → faster ion.", visualHint: "Pulse of ions speeds up past the gold grid." },
+    ],
+    visual: {
+      modelId: "ion-engine",
+      description: "Plasma chamber feeds ions through accelerating grid into a coherent thrust beam.",
+      controls: [{ label: "Grid voltage", param: "gridVoltage", min: 0.2, max: 4, step: 0.1, default: 1 }],
+    },
+    quiz: [
+      { question: "Compared to chemical rockets, ion thrusters have:", options: ["Higher thrust, lower I_sp", "Lower thrust, higher I_sp", "Same both", "Higher both"], answerIndex: 1, explanation: "Ion engines are low thrust but very high I_sp." },
+    ],
+  },
+];
