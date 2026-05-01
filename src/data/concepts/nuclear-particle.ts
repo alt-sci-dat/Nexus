@@ -27,8 +27,9 @@ export const nuclearParticleConcepts: Concept[] = [
       title: "Watch the nucleus emit",
       hypothesis: "Smaller half-life → more frequent emission events.",
       steps: [
-        { action: "Set half-life small.", expect: "Rapid emission; fast burst of yellow alphas + blue betas." },
-        { action: "Increase half-life.", expect: "Sparse, slow emissions." },
+        { action: "Short half-life.", expect: "Rapid emission burst.", paramSet: { halfLife: 0.6 }, durationSec: 5 },
+        { action: "Moderate half-life.", expect: "Steady emissions.", paramSet: { halfLife: 2 }, durationSec: 5 },
+        { action: "Long half-life.", expect: "Sparse, slow events.", paramSet: { halfLife: 7 }, durationSec: 5 },
       ],
       whatToNotice: ["Direction of each emission is random.", "Nucleus glow pulses, suggesting collective excitation."],
       commonMistake: "Thinking decay is age-dependent. It is not — each nucleus has constant decay probability per unit time.",
@@ -116,8 +117,8 @@ export const nuclearParticleConcepts: Concept[] = [
       title: "Plasma bottle dynamics",
       hypothesis: "Stronger B = tighter spirals + better confinement.",
       steps: [
-        { action: "Increase field strength.", expect: "Particles spiral tighter; oscillation frequency up." },
-        { action: "Observe particle motion along axis.", expect: "Particles drift slowly along axis while spiraling." },
+        { action: "Weak field.", expect: "Loose helices, particles wander.", paramSet: { fieldStrength: 0.3 }, durationSec: 5 },
+        { action: "Strong field.", expect: "Tight cyclotron orbits, confined trajectories.", paramSet: { fieldStrength: 2.5 }, durationSec: 5 },
       ],
       whatToNotice: ["Coil rings produce mirror geometry (peaks at ends).", "Particles bounce between mirrors."],
       commonMistake: "Thinking plasma can be confined by E fields alone. Need magnetic forces because plasma is quasi-neutral.",

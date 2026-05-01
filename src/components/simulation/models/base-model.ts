@@ -78,6 +78,45 @@ export abstract class BaseModel {
     return arrow;
   }
 
+  protected makeLabel(text: string, color = "#e2e8f0", scale = 1): THREE.Sprite {
+    const fontPx = 64;
+    const padding = 12;
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d")!;
+    ctx.font = `bold ${fontPx}px system-ui, -apple-system, "Segoe UI", sans-serif`;
+    const metrics = ctx.measureText(text);
+    const textWidth = Math.ceil(metrics.width);
+    canvas.width = textWidth + padding * 2;
+    canvas.height = fontPx + padding * 2;
+    const ctx2 = canvas.getContext("2d")!;
+    ctx2.font = ctx.font;
+    ctx2.fillStyle = "rgba(15, 23, 42, 0.82)";
+    ctx2.strokeStyle = "rgba(148, 163, 184, 0.55)";
+    ctx2.lineWidth = 2;
+    roundRect(ctx2, 1, 1, canvas.width - 2, canvas.height - 2, 14);
+    ctx2.fill();
+    ctx2.stroke();
+    ctx2.fillStyle = color;
+    ctx2.textBaseline = "middle";
+    ctx2.fillText(text, padding, canvas.height / 2);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.minFilter = THREE.LinearFilter;
+    const material = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false, depthWrite: false });
+    const sprite = new THREE.Sprite(material);
+    const aspect = canvas.width / canvas.height;
+    sprite.scale.set(aspect * scale, scale, 1);
+    sprite.renderOrder = 999;
+    return sprite;
+  }
+
+  protected addLabel(text: string, position: THREE.Vector3, options: { color?: string; scale?: number; offsetY?: number } = {}): THREE.Sprite {
+    const { color = "#e2e8f0", scale = 0.55, offsetY = 0.6 } = options;
+    const sprite = this.makeLabel(text, color, scale);
+    sprite.position.set(position.x, position.y + offsetY, position.z);
+    this.scene.add(sprite);
+    return sprite;
+  }
+
   start() {
     const tick = () => {
       if (this.disposed) return;
@@ -124,4 +163,18 @@ export abstract class BaseModel {
       this.container.removeChild(this.renderer.domElement);
     }
   }
+}
+
+function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
 }

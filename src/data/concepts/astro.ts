@@ -27,8 +27,9 @@ export const astroConcepts: Concept[] = [
       title: "Eccentricity sweep",
       hypothesis: "Higher eccentricity → planet much faster at perihelion.",
       steps: [
-        { action: "Set e=0.", expect: "Circular orbit, constant speed." },
-        { action: "Set e=0.7.", expect: "Strong stretched ellipse; planet whips around Sun, slow at far end." },
+        { action: "Circular orbit (e=0).", expect: "Constant speed; trail evenly spaced.", paramSet: { semiMajor: 4, eccentricity: 0, orbitalSpeed: 0.4 }, durationSec: 5 },
+        { action: "Mild ellipse.", expect: "Planet faster near perihelion.", paramSet: { semiMajor: 4, eccentricity: 0.4, orbitalSpeed: 0.4 }, durationSec: 5 },
+        { action: "Highly eccentric (e=0.75).", expect: "Comet-like; whips through perihelion, drags far away.", paramSet: { semiMajor: 5, eccentricity: 0.75, orbitalSpeed: 0.35 }, durationSec: 6 },
       ],
       whatToNotice: ["Sun sits at focus, not center.", "Trail spacing reveals speed: tight near Sun, sparse far."],
       commonMistake: "Drawing the Sun at the ellipse center. It is at one focus.",
@@ -93,8 +94,8 @@ export const astroConcepts: Concept[] = [
       title: "Spacetime sheet",
       hypothesis: "Bigger mass = deeper curvature dip.",
       steps: [
-        { action: "Increase mass slider.", expect: "Black sphere grows; surrounding grid sags more." },
-        { action: "Watch accretion disk.", expect: "Disk rotates; outer rings indicate lensing distortion in real BH images." },
+        { action: "Modest stellar-mass black hole.", expect: "Tight horizon, mild grid dip.", paramSet: { mass: 0.6 }, durationSec: 4 },
+        { action: "Crank mass.", expect: "Horizon grows; grid sags deeper.", paramSet: { mass: 2.5 }, durationSec: 5 },
       ],
       whatToNotice: ["Spacetime grid (yellow) deforms near the central mass.", "Event horizon is a one-way membrane."],
       commonMistake: "Thinking black holes 'suck things in.' Far away, gravity is identical to a star of equal mass; you only fall in if you cross the horizon.",

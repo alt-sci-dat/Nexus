@@ -27,8 +27,9 @@ export const propulsionConcepts: Concept[] = [
       title: "Thrust vs mass",
       hypothesis: "Higher thrust-to-mass = faster ascent.",
       steps: [
-        { action: "Increase thrust slider.", expect: "Rocket climbs fast, exhaust pours hot." },
-        { action: "Increase rocket mass.", expect: "Climb slows; needs more thrust to lift." },
+        { action: "Modest thrust, light rocket.", expect: "Rocket lifts smoothly.", paramSet: { thrust: 8, mass: 4 }, durationSec: 5 },
+        { action: "Crank thrust.", expect: "Sharp acceleration, thick exhaust.", paramSet: { thrust: 18, mass: 4 }, durationSec: 5 },
+        { action: "Add payload mass.", expect: "Climb slows; thrust-to-weight ratio drops.", paramSet: { thrust: 18, mass: 9 }, durationSec: 5 },
       ],
       whatToNotice: ["Exhaust particles fly down — rocket flies up (Newton's third).", "Net upward acceleration is (thrust − weight)/mass."],
       commonMistake: "Believing rockets push against air. They work in vacuum because momentum is conserved with the exhaust.",

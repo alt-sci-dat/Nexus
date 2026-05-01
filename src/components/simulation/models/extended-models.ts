@@ -50,6 +50,11 @@ export class DoubleSlitModel extends BaseModel {
     this.fringes.rotation.y = Math.PI / 2;
     this.scene.add(this.fringes);
 
+    this.addLabel("Source", new THREE.Vector3(-4, 1, 0), { color: "#fde047", scale: 0.5, offsetY: 0.5 });
+    this.addLabel("Slits", new THREE.Vector3(0, 2.4, 0), { color: "#94a3b8", scale: 0.45, offsetY: 0.3 });
+    this.addLabel("Screen", new THREE.Vector3(4, 3.2, 0), { color: "#cbd5e1", scale: 0.45, offsetY: 0.3 });
+    this.addLabel("Fringe pattern", new THREE.Vector3(4.2, -1.2, 0), { color: "#67e8f9", scale: 0.45, offsetY: 0.3 });
+
     this.camera.position.set(0, 4, 9);
     this.camera.lookAt(0, 1, 0);
   }
@@ -111,6 +116,10 @@ export class TransformerModel extends BaseModel {
     this.secondary = makeCoil(0xb45309, 16, 1.4, 1.5);
     this.scene.add(this.primary, this.secondary);
 
+    this.addLabel("Iron core", new THREE.Vector3(0, 1.5, 0), { color: "#cbd5e1", scale: 0.5, offsetY: 1.6 });
+    this.addLabel("Primary (Nₚ)", new THREE.Vector3(-1.4, 1.5, 0), { color: "#fdba74", scale: 0.45, offsetY: -1 });
+    this.addLabel("Secondary (Nₛ)", new THREE.Vector3(1.4, 1.5, 0), { color: "#fdba74", scale: 0.45, offsetY: -1 });
+
     this.camera.position.set(0, 3.5, 8);
     this.camera.lookAt(0, 1.5, 0);
   }
@@ -141,6 +150,10 @@ export class DecayChainModel extends BaseModel {
       new THREE.MeshStandardMaterial({ color: 0xef4444, emissive: 0xef4444, emissiveIntensity: 0.5 }),
     );
     this.scene.add(this.nucleus);
+
+    this.addLabel("Nucleus", new THREE.Vector3(0, 0, 0), { color: "#fca5a5", scale: 0.5, offsetY: 0.9 });
+    this.addLabel("α (yellow) / β (blue)", new THREE.Vector3(0, -2, 0), { color: "#fde047", scale: 0.45, offsetY: 0 });
+
     this.camera.position.set(4, 3, 6);
     this.camera.lookAt(0, 0, 0);
   }
@@ -200,6 +213,10 @@ export class NeutronStarModel extends BaseModel {
     this.beam2.position.y = -4;
     this.beam2.rotation.z = Math.PI;
     this.scene.add(this.beam1, this.beam2);
+
+    this.addLabel("Neutron star", new THREE.Vector3(0, 0, 0), { color: "#bae6fd", scale: 0.5, offsetY: 1 });
+    this.addLabel("Polar beam", new THREE.Vector3(0, 4, 0), { color: "#fde047", scale: 0.45, offsetY: 0.4 });
+
     this.camera.position.set(5, 3, 7);
     this.camera.lookAt(0, 0, 0);
   }
@@ -259,6 +276,11 @@ export class PlasmaBottleModel extends BaseModel {
         vlong: (Math.random() - 0.5) * 1.2,
       });
     }
+
+    this.addLabel("Mirror coil A", new THREE.Vector3(-2.5, 0, 0), { color: "#fdba74", scale: 0.45, offsetY: 1.5 });
+    this.addLabel("Mirror coil B", new THREE.Vector3(2.5, 0, 0), { color: "#fdba74", scale: 0.45, offsetY: 1.5 });
+    this.addLabel("Trapped plasma", new THREE.Vector3(0, 0, 0), { color: "#c4b5fd", scale: 0.45, offsetY: -1.6 });
+
     this.camera.position.set(0, 4, 7);
     this.camera.lookAt(0, 0, 0);
   }
@@ -302,6 +324,11 @@ export class IonEngineModel extends BaseModel {
       this.scene.add(m);
       this.ions.push({ mesh: m, pos: new THREE.Vector3(-1.5 - Math.random() * 0.5, 1.5 + (Math.random() - 0.5) * 0.5, (Math.random() - 0.5) * 0.5), vel: 0.5 });
     }
+
+    this.addLabel("Ionization chamber", new THREE.Vector3(-1.5, 1.5, 0), { color: "#cbd5e1", scale: 0.45, offsetY: 1 });
+    this.addLabel("Accel grid", new THREE.Vector3(-0.2, 1.5, 0), { color: "#fde047", scale: 0.4, offsetY: 0.9 });
+    this.addLabel("Ion beam", new THREE.Vector3(2.5, 1.5, 0), { color: "#c4b5fd", scale: 0.45, offsetY: 0.6 });
+
     this.camera.position.set(2, 3, 6);
     this.camera.lookAt(0, 1.5, 0);
   }
@@ -337,6 +364,9 @@ export class BECModel extends BaseModel {
       this.scene.add(m);
       this.atoms.push({ mesh: m, home, jitter: 1 });
     }
+
+    this.addLabel("Cold atom cloud", new THREE.Vector3(0, 0, 0), { color: "#bae6fd", scale: 0.5, offsetY: 1.5 });
+
     this.camera.position.set(4, 3, 6);
     this.camera.lookAt(0, 0, 0);
   }
@@ -387,6 +417,15 @@ export class FeynmanModel extends BaseModel {
     }
     const wavy = new THREE.Line(new THREE.BufferGeometry().setFromPoints(wavyPts), new THREE.LineBasicMaterial({ color: 0xef4444 }));
     this.scene.add(wavy);
+
+    this.addLabel("Vertex", new THREE.Vector3(-1, 0, 0), { color: "#fde047", scale: 0.4, offsetY: 0.4 });
+    this.addLabel("Vertex", new THREE.Vector3(1, 0, 0), { color: "#fde047", scale: 0.4, offsetY: 0.4 });
+    this.addLabel("e⁻", new THREE.Vector3(-3, -1.4, 0), { color: "#93c5fd", scale: 0.4, offsetY: 0 });
+    this.addLabel("e⁻", new THREE.Vector3(-3, 1.4, 0), { color: "#93c5fd", scale: 0.4, offsetY: 0 });
+    this.addLabel("e⁻", new THREE.Vector3(3, 1.4, 0), { color: "#93c5fd", scale: 0.4, offsetY: 0 });
+    this.addLabel("e⁻", new THREE.Vector3(3, -1.4, 0), { color: "#93c5fd", scale: 0.4, offsetY: 0 });
+    this.addLabel("γ", new THREE.Vector3(0, 0.4, 0), { color: "#fca5a5", scale: 0.4, offsetY: 0.3 });
+
     this.camera.position.set(0, 1.2, 6);
     this.camera.lookAt(0, 0, 0);
   }

@@ -27,8 +27,9 @@ export const fluidConcepts: Concept[] = [
       title: "Pressure ladder",
       hypothesis: "Pressure arrows grow linearly with depth.",
       steps: [
-        { action: "Double the density (e.g., salt water vs fresh).", expect: "All arrows grow proportionally." },
-        { action: "Increase gravity (Jupiter sim).", expect: "Pressure scales with g too." },
+        { action: "Fresh water on Earth.", expect: "Pressure arrows fan out with depth.", paramSet: { density: 1000, gravity: 9.8 }, durationSec: 4 },
+        { action: "Switch to dense brine (~1.2× density).", expect: "All arrows grow proportionally.", paramSet: { density: 1200, gravity: 9.8 }, durationSec: 4 },
+        { action: "Move to Jupiter-like gravity.", expect: "Pressure scales linearly with g.", paramSet: { density: 1200, gravity: 25 }, durationSec: 4 },
       ],
       whatToNotice: ["Top of column = ~atmospheric.", "Bottom feels weight of everything above."],
       commonMistake: "Thinking shape matters. A thin tall column gives same pressure as a wide one at the same depth.",

@@ -22,6 +22,9 @@ export class CartPushModel extends BaseModel {
     this.scene.add(this.hand);
 
     this.forceArrow = this.makeArrow(new THREE.Vector3(1, 0, 0), new THREE.Vector3(this.startX - 0.6, 0.4, 0), 1, 0xfde047);
+    this.addLabel("Cart", new THREE.Vector3(this.startX, 0.4, 0), { color: "#fca5a5", scale: 0.6 });
+    this.addLabel("Force F", new THREE.Vector3(this.startX - 0.6, 1.1, 0), { color: "#fde047", scale: 0.55, offsetY: 0.2 });
+    this.addLabel("Hand", new THREE.Vector3(this.startX - 0.7, 0.5, 0), { color: "#fcd34d", scale: 0.5, offsetY: 0.4 });
     this.camera.position.set(0, 3, 7);
     this.camera.lookAt(0, 0.5, 0);
   }
@@ -71,6 +74,10 @@ export class AppleFallModel extends BaseModel {
     this.apple.castShadow = true;
     this.scene.add(this.apple);
 
+    this.addLabel("Apple", new THREE.Vector3(0.4, this.startY, 0), { color: "#fca5a5", scale: 0.5, offsetY: 0.5 });
+    this.addLabel("Tree", new THREE.Vector3(-0.5, 4, 0), { color: "#86efac", scale: 0.55, offsetY: 1.6 });
+    this.addLabel("Ground", new THREE.Vector3(0, 0, 0), { color: "#a3a3a3", scale: 0.5, offsetY: 0.3 });
+
     this.camera.position.set(4, 3, 6);
     this.camera.lookAt(0, 2, 0);
   }
@@ -101,6 +108,11 @@ export class BarMagnetsModel extends BaseModel {
     this.south.position.set(2, 0.3, 0);
     this.south.rotation.y = Math.PI;
     this.scene.add(this.south);
+
+    this.addLabel("N", new THREE.Vector3(-2.5, 0.3, 0), { color: "#fca5a5", scale: 0.45, offsetY: 0.6 });
+    this.addLabel("S", new THREE.Vector3(-1.5, 0.3, 0), { color: "#93c5fd", scale: 0.45, offsetY: 0.6 });
+    this.addLabel("S", new THREE.Vector3(1.5, 0.3, 0), { color: "#93c5fd", scale: 0.45, offsetY: 0.6 });
+    this.addLabel("N", new THREE.Vector3(2.5, 0.3, 0), { color: "#fca5a5", scale: 0.45, offsetY: 0.6 });
 
     for (let i = 0; i < 9; i++) {
       const t = (i + 1) / 10;
@@ -172,6 +184,11 @@ export class LampShadowModel extends BaseModel {
     this.shadow.rotation.y = -Math.PI / 2;
     this.shadow.position.set(3.99, 1.5, 0);
     this.scene.add(this.shadow);
+
+    this.addLabel("Lamp", new THREE.Vector3(-3, 2.5, 0), { color: "#fde047", scale: 0.55, offsetY: 0.6 });
+    this.addLabel("Object", new THREE.Vector3(0, 1, 0), { color: "#a5b4fc", scale: 0.5, offsetY: 0.7 });
+    this.addLabel("Wall", new THREE.Vector3(4, 4.5, 0), { color: "#cbd5e1", scale: 0.5, offsetY: 0.4 });
+    this.addLabel("Shadow", new THREE.Vector3(3.99, 1.5, 1.5), { color: "#94a3b8", scale: 0.5, offsetY: 0 });
     this.camera.position.set(0, 3, 8);
     this.camera.lookAt(0, 1, 0);
   }
@@ -208,6 +225,9 @@ export class PendulumModel extends BaseModel {
     const ropeMat = new THREE.LineBasicMaterial({ color: 0xe5e7eb });
     this.rope = new THREE.Line(ropeGeo, ropeMat);
     this.scene.add(this.rope);
+
+    this.addLabel("Pivot", new THREE.Vector3(0, 4, 0), { color: "#cbd5e1", scale: 0.5, offsetY: 0.4 });
+    this.addLabel("Bob", new THREE.Vector3(0, 1.5, 0), { color: "#6ee7b7", scale: 0.5, offsetY: 0.5 });
     this.camera.position.set(5, 3, 6);
     this.camera.lookAt(0, 2.5, 0);
   }
@@ -252,6 +272,10 @@ export class InclinedRampModel extends BaseModel {
     this.normalArrow = this.makeArrow(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), 1, 0x22d3ee);
 
     this.applyAngle();
+    this.addLabel("Ball", new THREE.Vector3(2.5, 1, 0), { color: "#fdba74", scale: 0.5, offsetY: 0.5 });
+    this.addLabel("Ramp", new THREE.Vector3(0, 0.5, 0), { color: "#a5b4fc", scale: 0.55, offsetY: 0.4 });
+    this.addLabel("g", new THREE.Vector3(2.5, 0, 0), { color: "#fca5a5", scale: 0.4, offsetY: -0.4 });
+    this.addLabel("N", new THREE.Vector3(2.5, 1.5, 0), { color: "#67e8f9", scale: 0.4, offsetY: 0.5 });
     this.camera.position.set(0, 3, 7);
     this.camera.lookAt(0, 1, 0);
   }
@@ -312,6 +336,10 @@ export class LeverSeesawModel extends BaseModel {
     this.leftMass = makeWeight(0xef4444, 1);
     this.rightMass = makeWeight(0x22c55e, 1);
     this.scene.add(this.leftMass, this.rightMass);
+
+    this.addLabel("Pivot", new THREE.Vector3(0, 0.5, 0), { color: "#cbd5e1", scale: 0.45, offsetY: 0.7 });
+    this.addLabel("m₁", new THREE.Vector3(-3, 1.05, 0), { color: "#fca5a5", scale: 0.4, offsetY: 0.9 });
+    this.addLabel("m₂", new THREE.Vector3(3, 1.05, 0), { color: "#86efac", scale: 0.4, offsetY: 0.9 });
     this.camera.position.set(0, 3, 7);
     this.camera.lookAt(0, 1, 0);
   }

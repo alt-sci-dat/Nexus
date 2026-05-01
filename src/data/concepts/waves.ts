@@ -27,8 +27,10 @@ export const wavesConcepts: Concept[] = [
       title: "Source motion test",
       hypothesis: "Faster source = larger pitch shift.",
       steps: [
-        { action: "Increase source speed past wave speed.", expect: "Wavefronts in front collapse — sonic boom analog." },
-        { action: "Slow source to zero.", expect: "Concentric circles — no shift." },
+        { action: "Stationary source.", expect: "Concentric circles — no Doppler.", paramSet: { sourceSpeed: 0, waveSpeed: 1.2 }, durationSec: 4 },
+        { action: "Slow approach.", expect: "Front waves crowd, back waves stretch.", paramSet: { sourceSpeed: 0.6, waveSpeed: 1.2 }, durationSec: 5 },
+        { action: "Source matches wave speed.", expect: "Wavefronts pile up at the source — Mach 1.", paramSet: { sourceSpeed: 1.2, waveSpeed: 1.2 }, durationSec: 4 },
+        { action: "Supersonic.", expect: "Mach cone forms behind source.", paramSet: { sourceSpeed: 1.6, waveSpeed: 1.2 }, durationSec: 4 },
       ],
       whatToNotice: ["Wavefront circles centered where the source emitted them.", "Observer pitch depends on relative motion."],
       commonMistake: "Thinking the source's frequency itself changes. It does not — only the observed frequency does.",

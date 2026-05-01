@@ -38,6 +38,10 @@ export class KeplerOrbitModel extends BaseModel {
     this.trail = new THREE.Line(new THREE.BufferGeometry(), new THREE.LineBasicMaterial({ color: 0x60a5fa }));
     this.scene.add(this.trail);
     this.computeOrbit();
+
+    this.addLabel("Sun", new THREE.Vector3(0, 0, 0), { color: "#fde047", scale: 0.6, offsetY: 1.1 });
+    this.addLabel("Planet", new THREE.Vector3(4, 0, 0), { color: "#93c5fd", scale: 0.5, offsetY: 0.6 });
+    this.addLabel("Orbit", new THREE.Vector3(0, 0, 4), { color: "#a3a3a3", scale: 0.45, offsetY: 0.4 });
     this.camera.position.set(0, 6, 10);
     this.camera.lookAt(0, 0, 0);
   }
@@ -89,6 +93,9 @@ export class AtomicOrbitalModel extends BaseModel {
     this.nucleus = new THREE.Mesh(nucleusGeo, nucleusMat);
     this.scene.add(this.nucleus);
     this.buildCloud();
+
+    this.addLabel("Nucleus", new THREE.Vector3(0, 0, 0), { color: "#fca5a5", scale: 0.5, offsetY: 0.7 });
+    this.addLabel("e⁻ probability cloud", new THREE.Vector3(0, 2.5, 0), { color: "#a5b4fc", scale: 0.5, offsetY: 0 });
     this.camera.position.set(5, 4, 6);
     this.camera.lookAt(0, 0, 0);
   }
@@ -193,6 +200,9 @@ export class RocketThrustModel extends BaseModel {
     this.exhaust = new THREE.Points(geo, mat);
     this.scene.add(this.exhaust);
 
+    this.addLabel("Rocket", new THREE.Vector3(0, 2.5, 0), { color: "#cbd5e1", scale: 0.5, offsetY: 0.4 });
+    this.addLabel("Nozzle", new THREE.Vector3(0, -0.05, 0), { color: "#94a3b8", scale: 0.4, offsetY: 0 });
+    this.addLabel("Exhaust v_e", new THREE.Vector3(0, -2, 0), { color: "#fb923c", scale: 0.45, offsetY: 0 });
     this.camera.position.set(5, 4, 7);
     this.camera.lookAt(0, 2, 0);
   }
@@ -279,6 +289,9 @@ export class BlackholeLensingModel extends BaseModel {
     this.grid.position.y = -2;
     this.scene.add(this.grid);
 
+    this.addLabel("Black hole", new THREE.Vector3(0, 1.2, 0), { color: "#fcd34d", scale: 0.55, offsetY: 0 });
+    this.addLabel("Accretion disk", new THREE.Vector3(2.8, 0.4, 0), { color: "#fb923c", scale: 0.5, offsetY: 0 });
+    this.addLabel("Spacetime grid", new THREE.Vector3(-7, -2.4, 0), { color: "#94a3b8", scale: 0.5, offsetY: 0 });
     this.camera.position.set(0, 8, 12);
     this.camera.lookAt(0, 0, 0);
   }

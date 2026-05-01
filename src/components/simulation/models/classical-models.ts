@@ -32,6 +32,10 @@ export class PressureColumnModel extends BaseModel {
       this.scene.add(arrow);
       this.gauges.push({ mesh: arrow, baseLen, depth });
     }
+
+    this.addLabel("Surface", new THREE.Vector3(0, 6, 0), { color: "#7dd3fc", scale: 0.5, offsetY: 0.3 });
+    this.addLabel("Fluid column", new THREE.Vector3(-1.4, 3, 0), { color: "#bae6fd", scale: 0.55, offsetY: 0 });
+    this.addLabel("Pressure ↑", new THREE.Vector3(2.4, 2, 0), { color: "#fca5a5", scale: 0.5, offsetY: 0 });
     this.camera.position.set(5, 4, 6);
     this.camera.lookAt(0, 3, 0);
   }
@@ -89,6 +93,11 @@ export class ConvexLensModel extends BaseModel {
       this.scene.add(line);
       this.rays.push(line);
     }
+
+    this.addLabel("Object", new THREE.Vector3(-3, 2, 0), { color: "#fb923c", scale: 0.5, offsetY: 0.4 });
+    this.addLabel("Lens", new THREE.Vector3(0, 1.5, 0), { color: "#93c5fd", scale: 0.45, offsetY: 1.4 });
+    this.addLabel("F", new THREE.Vector3(2, 1.5, 0), { color: "#fde047", scale: 0.4, offsetY: 0.4 });
+    this.addLabel("Image plane", new THREE.Vector3(5, 1.5, 0), { color: "#a3a3a3", scale: 0.45, offsetY: 0.5 });
     this.camera.position.set(0, 3, 8);
     this.camera.lookAt(0, 1.5, 0);
   }
@@ -153,6 +162,11 @@ export class SimpleCircuitModel extends BaseModel {
       this.scene.add(e);
       this.electrons.push(e);
     }
+
+    this.addLabel("Battery", new THREE.Vector3(-3, 0.5, 0), { color: "#86efac", scale: 0.5, offsetY: 0.7 });
+    this.addLabel("Bulb", new THREE.Vector3(3, 1.6, 0), { color: "#fde047", scale: 0.5, offsetY: 0.6 });
+    this.addLabel("Wire", new THREE.Vector3(0, 2, 0), { color: "#cbd5e1", scale: 0.45, offsetY: 0.3 });
+    this.addLabel("e⁻ flow", new THREE.Vector3(-2.5, 2.2, 0), { color: "#93c5fd", scale: 0.4, offsetY: 0.3 });
     this.camera.position.set(0, 3, 7);
     this.camera.lookAt(0, 1.2, 0);
   }
@@ -210,6 +224,9 @@ export class ProjectileArcModel extends BaseModel {
     this.trajectory = new THREE.Line(trajGeo, trajMat);
     this.scene.add(this.trajectory);
 
+    this.addLabel("Cannon", new THREE.Vector3(-4, 1, 0), { color: "#cbd5e1", scale: 0.5, offsetY: 0.4 });
+    this.addLabel("Projectile", new THREE.Vector3(2, 3.5, 0), { color: "#fca5a5", scale: 0.45, offsetY: 0.3 });
+    this.addLabel("Trajectory", new THREE.Vector3(0, 4.5, 0), { color: "#67e8f9", scale: 0.45, offsetY: 0 });
     this.camera.position.set(0, 4, 10);
     this.camera.lookAt(0, 2, 0);
     this.recomputeTrajectory();
@@ -277,6 +294,10 @@ export class ForceCartModel extends BaseModel {
 
     this.forceArrow = this.makeArrow(new THREE.Vector3(1, 0, 0), this.cart.position.clone(), 1, 0xfde047);
     this.accelArrow = this.makeArrow(new THREE.Vector3(1, 0, 0), this.cart.position.clone().add(new THREE.Vector3(0, 0.7, 0)), 1, 0x22d3ee);
+
+    this.addLabel("Cart (m)", new THREE.Vector3(-3, 0.4, 0), { color: "#a5b4fc", scale: 0.45, offsetY: 0.7 });
+    this.addLabel("F", new THREE.Vector3(-2, 0.4, 0), { color: "#fde047", scale: 0.4, offsetY: 0 });
+    this.addLabel("a", new THREE.Vector3(-3, 1, 0), { color: "#67e8f9", scale: 0.4, offsetY: 0 });
     this.camera.position.set(0, 3, 7);
     this.camera.lookAt(0, 0.5, 0);
   }
@@ -352,6 +373,10 @@ export class OhmsCircuitModel extends BaseModel {
       this.scene.add(e);
       this.electrons.push(e);
     }
+
+    this.addLabel("Battery V", new THREE.Vector3(-3, 0.6, 0), { color: "#86efac", scale: 0.5, offsetY: 0.9 });
+    this.addLabel("Resistor R", new THREE.Vector3(0, 2.2, 0), { color: "#fbbf24", scale: 0.5, offsetY: 0.4 });
+    this.addLabel("Bulb", new THREE.Vector3(3, 1.6, 0), { color: "#fde047", scale: 0.45, offsetY: 0.6 });
     this.camera.position.set(0, 3, 7);
     this.camera.lookAt(0, 1.4, 0);
   }

@@ -10,6 +10,7 @@ import { propulsionConcepts } from "./propulsion";
 import { thermoConcepts } from "./thermo";
 import { nuclearParticleConcepts } from "./nuclear-particle";
 import { extraConcepts } from "./extra";
+import { extraConceptsTwo } from "./extra-2";
 
 export const concepts: Concept[] = [
   ...mechanicsConcepts,
@@ -23,4 +24,5 @@ export const concepts: Concept[] = [
   ...thermoConcepts,
   ...nuclearParticleConcepts,
   ...extraConcepts,
+  ...extraConceptsTwo,
 ];

@@ -6,9 +6,15 @@ import clsx from "clsx";
 import type { Audience, Concept } from "@/types/concept";
 import { loadProgress, saveProgress } from "@/lib/progress";
 import { Concept3DViewer } from "@/components/simulation/concept-3d-viewer";
+import { ExperimentPlayer } from "@/components/simulation/experiment-player";
 
 const Visualizer3DShell = dynamic(
   () => import("@/components/simulation/visualizer-3d-shell").then((m) => m.Visualizer3DShell),
+  { ssr: false }
+);
+
+const Text3D = dynamic(
+  () => import("@/components/simulation/3d-visualizers/3d-text-renderer").then((m) => m.Text3D),
   { ssr: false }
 );
 
@@ -49,13 +55,21 @@ export function ConceptPageClient({ concept }: Props) {
     <div className="space-y-8">
       <section className="rounded-[2rem] border border-white/10 bg-slate-950/65 p-6 shadow-2xl shadow-black/30 backdrop-blur md:p-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-4xl space-y-3">
+          <div className="max-w-4xl space-y-3 w-full">
             <div className="flex flex-wrap items-center gap-2">
               <Pill>{concept.domain}</Pill>
               <Pill>{concept.gradeBand}</Pill>
               <Pill>Difficulty {concept.difficulty}/5</Pill>
             </div>
-            <h1 className="text-3xl font-semibold text-white md:text-5xl">{concept.title}</h1>
+            <div className="my-6 rounded-2xl border border-cyan-400/30 bg-gradient-to-b from-cyan-950/30 to-transparent p-2">
+              <Text3D 
+                text={concept.title.substring(0, 20)} 
+                size={1.5}
+                height={0.4}
+                animation="rotate"
+                className="h-48"
+              />
+            </div>
             <p className="text-base leading-8 text-slate-300 md:text-lg">{concept.oneLiner}</p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -108,6 +122,19 @@ export function ConceptPageClient({ concept }: Props) {
           <Visualizer3DShell concept={concept} />
         )}
       </section>
+
+      {concept.visual && concept.experiment?.steps?.length > 0 && (
+        <section className="rounded-[2rem] border border-cyan-400/30 bg-cyan-400/5 p-5 md:p-6">
+          <header className="mb-4 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p className="text-xs uppercase tracking-[0.25em] text-cyan-200">Live experiment</p>
+              <h2 className="text-xl font-semibold text-white">{concept.experiment.title}</h2>
+              <p className="mt-1 text-sm leading-7 text-slate-300">{concept.experiment.hypothesis}</p>
+            </div>
+          </header>
+          <ExperimentPlayer concept={concept} />
+        </section>
+      )}
 
       <section className="grid gap-6 xl:grid-cols-2">
         <article className="rounded-[2rem] border border-white/10 bg-white/5 p-5">

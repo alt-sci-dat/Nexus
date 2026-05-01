@@ -28,6 +28,9 @@ export class GasParticlesModel extends BaseModel {
       this.scene.add(m);
       this.particles.push({ mesh: m, vel: v });
     }
+
+    this.addLabel("Container", new THREE.Vector3(0, 2, 0), { color: "#bae6fd", scale: 0.5, offsetY: 0.4 });
+    this.addLabel("Gas particles", new THREE.Vector3(0, -2.4, 0), { color: "#fde047", scale: 0.5, offsetY: 0 });
     this.camera.position.set(6, 5, 8);
     this.camera.lookAt(0, 0, 0);
   }
@@ -98,8 +101,11 @@ export class CarnotCycleModel extends BaseModel {
     this.indicator = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 16), new THREE.MeshStandardMaterial({ color: 0xfde047, emissive: 0xfde047, emissiveIntensity: 0.7 }));
     this.scene.add(this.indicator);
 
-    const labelMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 });
-    void labelMat;
+    this.addLabel("Cylinder", new THREE.Vector3(-3, 1.5, 0), { color: "#cbd5e1", scale: 0.45, offsetY: 1.8 });
+    this.addLabel("Piston", new THREE.Vector3(-3, 2, 0), { color: "#fda4af", scale: 0.4, offsetY: 0.4 });
+    this.addLabel("Hot reservoir", new THREE.Vector3(-3, 0, -1.5), { color: "#fca5a5", scale: 0.45, offsetY: 0.4 });
+    this.addLabel("Cold reservoir", new THREE.Vector3(-3, 0, 1.5), { color: "#93c5fd", scale: 0.45, offsetY: 0.4 });
+    this.addLabel("PV diagram", new THREE.Vector3(3.6, 3, 0), { color: "#67e8f9", scale: 0.5, offsetY: 0.3 });
 
     this.camera.position.set(2, 4, 8);
     this.camera.lookAt(0, 1.5, 0);

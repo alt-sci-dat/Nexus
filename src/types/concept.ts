@@ -43,6 +43,9 @@ export type RealWorldExample = {
 export type ExperimentStep = {
   action: string;
   expect: string;
+  paramSet?: Record<string, number>;
+  durationSec?: number;
+  caption?: string;
 };
 
 export type Experiment = {
@@ -51,6 +54,7 @@ export type Experiment = {
   steps: ExperimentStep[];
   whatToNotice: string[];
   commonMistake: string;
+  loop?: boolean;
 };
 
 export type QuizItem = {

@@ -42,6 +42,11 @@ export class MagnetCoilInductionModel extends BaseModel {
     this.led = new THREE.Mesh(ledGeo, this.ledMat);
     this.led.position.set(2, 3.2, 0);
     this.scene.add(this.led);
+
+    this.addLabel("Magnet", new THREE.Vector3(-3, 1.5, 0), { color: "#fca5a5", scale: 0.5, offsetY: 0.6 });
+    this.addLabel("Coil (N turns)", new THREE.Vector3(2, 1.5, 0), { color: "#fdba74", scale: 0.5, offsetY: 1.2 });
+    this.addLabel("Induced I", new THREE.Vector3(2, 2.6, 0), { color: "#fde047", scale: 0.45, offsetY: 0.4 });
+    this.addLabel("LED", new THREE.Vector3(2, 3.2, 0), { color: "#bbf7d0", scale: 0.4, offsetY: 0.4 });
     this.camera.position.set(0, 4, 7);
     this.camera.lookAt(0, 1.5, 0);
   }
@@ -83,6 +88,12 @@ export class SnellRefractionModel extends BaseModel {
     this.normal = new THREE.Line(normalGeo, new THREE.LineDashedMaterial({ color: 0xa3a3a3, dashSize: 0.2, gapSize: 0.1 }));
     this.normal.computeLineDistances();
     this.scene.add(this.normal);
+
+    this.addLabel("Air (n₁)", new THREE.Vector3(-2, 2, 0), { color: "#bae6fd", scale: 0.45, offsetY: 0.3 });
+    this.addLabel("Water (n₂)", new THREE.Vector3(2, -1.5, 0), { color: "#7dd3fc", scale: 0.45, offsetY: 0.3 });
+    this.addLabel("Incident", new THREE.Vector3(-2, 2.5, 0), { color: "#fde047", scale: 0.4, offsetY: 0.4 });
+    this.addLabel("Refracted", new THREE.Vector3(1.5, -2, 0), { color: "#67e8f9", scale: 0.4, offsetY: -0.3 });
+    this.addLabel("Normal", new THREE.Vector3(0, 2.5, 0), { color: "#a3a3a3", scale: 0.4, offsetY: 0.3 });
     this.camera.position.set(4, 2, 6);
     this.camera.lookAt(0, 0, 0);
   }
@@ -123,6 +134,9 @@ export class DopplerSourceModel extends BaseModel {
     );
     this.observer.position.set(5, 1, 0);
     this.scene.add(this.observer);
+
+    this.addLabel("Source", new THREE.Vector3(-4, 1, 0), { color: "#fca5a5", scale: 0.5, offsetY: 0.5 });
+    this.addLabel("Observer", new THREE.Vector3(5, 1, 0), { color: "#86efac", scale: 0.5, offsetY: 0.5 });
     this.camera.position.set(0, 5, 8);
     this.camera.lookAt(0, 1, 0);
   }
@@ -191,6 +205,10 @@ export class PrismSpectrumModel extends BaseModel {
       this.scene.add(line);
       this.outgoing.push(line);
     });
+
+    this.addLabel("White light", new THREE.Vector3(-4, 0.6, 0), { color: "#f8fafc", scale: 0.5, offsetY: 0.3 });
+    this.addLabel("Prism", new THREE.Vector3(0, 0, 0), { color: "#cbd5e1", scale: 0.5, offsetY: 1.2 });
+    this.addLabel("Spectrum", new THREE.Vector3(5, 0, 0), { color: "#86efac", scale: 0.5, offsetY: 0.6 });
     this.camera.position.set(0, 3, 6);
     this.camera.lookAt(0, 0, 0);
   }
@@ -229,6 +247,10 @@ export class SpringMassModel extends BaseModel {
       new THREE.LineBasicMaterial({ color: 0xa3a3a3 }),
     );
     this.scene.add(this.spring);
+
+    this.addLabel("Wall", new THREE.Vector3(-4, 1, 0), { color: "#cbd5e1", scale: 0.45, offsetY: 1.2 });
+    this.addLabel("Spring (k)", new THREE.Vector3(-2, 1, 0), { color: "#a3a3a3", scale: 0.45, offsetY: 0.5 });
+    this.addLabel("Mass (m)", new THREE.Vector3(0, 1, 0), { color: "#fda4af", scale: 0.5, offsetY: 0.6 });
     this.camera.position.set(0, 3, 7);
     this.camera.lookAt(0, 1, 0);
   }
